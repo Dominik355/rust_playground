@@ -1,0 +1,72 @@
+services:
+  zookeeper1:
+    image: confluentinc/cp-zookeeper:7.5.5
+    restart: on-failure
+    hostname: zookeeper1
+    container_name: zookeeper1
+    ports:
+      - 2181:2181
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SERVER_CNXN_FACTORY: org.apache.zookeeper.server.NettyServerCnxnFactory
+      ZOOKEEPER_SERVER_ID: 1
+    networks:
+      - backend
+
+    volumes:
+      - zookeeper1-data:/var/lib/zookeeper/data
+      - zookeeper1-log:/var/lib/zookeeper/log
+      - zookeeper1-secrets:/etc/zookeeper/secrets
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.5
+    hostname: kafka1
+    container_name: kafka1
+    depends_on:
+      - zookeeper1
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper1:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://${DOCKER_HOST_IP:-127.0.0.1}:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1 # we have only 1 broker
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - backend
+    volumes:
+      - kafka1-secrets:/etc/kafka/secrets
+      - kafka1-data:/var/lib/kafka/data
+
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui-rust-testing
+    ports:
+      - "9091:9091"
+    restart: on-failure
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=rust-test
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper1:2181
+      - SERVER_PORT=9091
+    depends_on:
+      - zookeeper1
+      - kafka
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  kafka1-data:
+  kafka1-secrets:
+  zookeeper1-data:
+  zookeeper1-log:
+  zookeeper1-secrets:

@@ -1,0 +1,78 @@
+[package]
+name = "rust_playground"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
+tokio = { version = "1.36", features = ["full"] }
+anyhow = "1"
+reqwest = "0.11"
+prometheus = "0.13.3"
+flume = "0.11"
+regex = "1.10"
+cron = "0.12"
+sysinfo = "0.30"
+ndarray = "0.15.6"
+#ndarray-stats = "0.5.1"
+#statrs = "0.16.0"
+#num-traits = "0.2.16"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+
+arc-swap = { version = "1.6" }
+maplit = "1.0"
+futures = "0.3"
+chrono = "0.4.34"
+serde = { version = "1.0.188", features = ["derive"] }
+serde_json = "1.0.117"
+
+[lib]
+name = "playground"
+path = "src/lib.rs"
+
+[[bin]]
+name = "type_id"
+path = "src/mains/type_id.rs"
+
+[[bin]]
+name = "panic_exit"
+path = "src/mains/panic_exit.rs"
+
+[[bin]]
+name = "panic_exit_tokio_task"
+path = "src/mains/panic_exit_tokio_task.rs"
+
+[[bin]]
+name = "builder"
+path = "src/mains/builder.rs"
+
+[[bin]]
+name = "flume"
+path = "src/mains/flume.rs"
+
+[[bin]]
+name = "resources"
+path = "src/mains/resources.rs"
+
+[[bin]]
+name = "window_assigner"
+path = "src/mains/window_assigner.rs"
+
+[[bin]]
+name = "hashmap_generic_key"
+path = "src/mains/hashmap_generic_key.rs"
+
+[[bin]]
+name = "tracingg"
+path = "src/mains/tracingg.rs"
+
+[[bin]]
+name = "testing"
+path = "src/mains/testing.rs"
+
+[[bin]]
+name = "ratelimiter"
+path = "src/mains/ratelimiter.rs"

@@ -1,0 +1,1 @@
+/home/dominik-bilik/projects/rust/rust_playground/target/debug/patterns_and_matching: /home/dominik-bilik/projects/rust/rust_playground/src/blog.rs /home/dominik-bilik/projects/rust/rust_playground/src/lib.rs /home/dominik-bilik/projects/rust/rust_playground/src/mains/patterns_and_matching.rs
