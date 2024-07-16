@@ -1,1 +1,0 @@
-/home/dominik-bilik/projects/rust/rust_playground/target/debug/window_assigner: /home/dominik-bilik/projects/rust/rust_playground/src/blog.rs /home/dominik-bilik/projects/rust/rust_playground/src/lib.rs /home/dominik-bilik/projects/rust/rust_playground/src/mains/window_assigner.rs

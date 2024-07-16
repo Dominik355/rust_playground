@@ -1,1 +1,0 @@
-/home/dominik-bilik/projects/rust/rust_playground/target/debug/dynamic_dispatch_vs_generics: /home/dominik-bilik/projects/rust/rust_playground/src/blog.rs /home/dominik-bilik/projects/rust/rust_playground/src/lib.rs /home/dominik-bilik/projects/rust/rust_playground/src/mains/dynamic_dispatch_vs_generics.rs
