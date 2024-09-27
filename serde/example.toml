@@ -1,0 +1,8 @@
+name = "my-app"
+
+[s3_sink]
+bucket = "test-bucket"
+access_key = "test-a"
+secret_key = "test-s"
+endpoint = "test-e"
+port = 1

@@ -1,2 +1,3 @@
 [workspace]
-members = ["everything", "rw_lock", "sync", "async_testing", "kafka"]
+resolver = "2"
+members = ["everything", "rw_lock", "sync", "async_testing", "kafka", "dynamic-vs-generic", "left-right-map", "serde", "tokio", "named-tokio-tasks"]
